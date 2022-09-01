@@ -8,7 +8,7 @@ from django.contrib.auth.models import User
 
 def  user_login(request):
     if request.user.is_authenticated == True:
-        return redirect('/')
+        return redirect('home:home')
     
     
     if request.method =='POST':
@@ -18,17 +18,17 @@ def  user_login(request):
         print(user,)
         if user is not None:
             login(request,user)
-            return redirect('/')
+            return redirect('home:home')
     return render(request, "accounts/login.html")
 
 def user_logout(request):
     logout(request)
-    return redirect('/')
+    return redirect('home:home')
 
 def user_register(request):
     context={'errors':[]}
     if request.user.is_authenticated == True:
-        return redirect('/')
+        return redirect('home:home')
  
  
     if request.method=='POST':
@@ -42,5 +42,5 @@ def user_register(request):
             
         user = User.objects.create(username=username,email=email,password=password1)
         login(request, user)
-        return redirect('/')    
+        return redirect('home:home')    
     return render(request,'accounts/register.html',{})
