@@ -10,7 +10,8 @@ from django.contrib.auth.models import User
 class Category(models.Model):
     title=models.CharField(max_length=100)
     created=models.DateTimeField(auto_now_add=True)
-    
+    class Meta:
+        verbose_name_plural = "categories"
     def __str__(self):
         return self.title
 

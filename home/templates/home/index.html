@@ -77,8 +77,15 @@ https://templatemo.com/tm-551-stand-blog
                  <div class="d-flex">  
                   <a class="nav-link" href="">{{ request.user.username }}  </a>
                 {% endif %}
-
-                 <a class="nav-link" href="{% url 'accounts:logout' %}">  Logout</a>
+                {% if user.profile.image %}
+                <span>
+                    <img src="{{ user.profile.image.url }}" width='33px' height='33px' style='border-radius:70%' >
+                </span>
+                {% else %}
+                    <img src="{% static 'accounts\images\noprofile.jpg' %}" width='33px' height='33px' style='border-radius:70%' >
+ 
+                {% endif %}     
+                <a class="nav-link" href="{% url 'accounts:logout' %}">  Logout</a>
                   </div>
               {% else %}
               <div class="d-flex">
