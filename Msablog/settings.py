@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     #my apps
     'home',
     'accounts.apps.AccountsConfig',
-    'blog',
+    'blog.apps.BlogConfig',
     
     
     'django_cleanup.apps.CleanupConfig'
@@ -61,7 +61,7 @@ ROOT_URLCONF = 'Msablog.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR /'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
