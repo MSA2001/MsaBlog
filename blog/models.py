@@ -28,6 +28,8 @@ class Article(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     
+    
+    
     def save(self, force_insert=False, force_update=False, using=None, update_fields=None):
         self.slug=slugify(self.title)
         super(Article, self).save()
