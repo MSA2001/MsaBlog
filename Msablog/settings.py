@@ -25,7 +25,9 @@ SECRET_KEY = 'django-insecure-li7$azi%j)uzzxz#=ham)4=1xl22frczlsa@e_xn(ysbtc#6#h
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
+
+CSRF_TRUSTED_ORIGINS = ['https://4716-145-239-218-166.eu.ngrok.io']
 
 
 # Application definition
@@ -38,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_render_partial',
+    'django_social_share',
     #my apps
     'home',
     'accounts.apps.AccountsConfig',
