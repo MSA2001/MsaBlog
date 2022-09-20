@@ -4,158 +4,215 @@
 
 {% block content %}
 
-<body>
+    <body>
 
-  <!-- ***** Preloader Start ***** -->
-  <div id="preloader">
-      <div class="jumper">
-          <div></div>
-          <div></div>
-          <div></div>
-      </div>
-  </div>  
-  <!-- ***** Preloader End ***** -->
-
-  <!-- Header -->
-  <header class="">
-    <nav class="navbar navbar-expand-lg">
-      <div class="container">
-        <a class="navbar-brand" href="index.html"><h2>Stand Blog<em>.</em></h2></a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-          <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'home:home' %}">Home
-                <span class="sr-only">(current)</span>
-              </a>
-            </li> 
-            <li class="nav-item">
-              <a class="nav-link" href="about.html">About Us</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'blog:articles_list' %}">Blog Entries</a>
-            </li>
-            <li class="nav-item active">
-              <a class="nav-link" href="post-details.html">Post Details</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="contact.html">Contact Us</a>
-            </li>
-          </ul>
+    <!-- ***** Preloader Start ***** -->
+    <div id="preloader">
+        <div class="jumper">
+            <div></div>
+            <div></div>
+            <div></div>
         </div>
-      </div>
-    </nav>
-  </header>
-
-  <!-- Page Content -->
-  <!-- Banner Starts Here -->
-  <div class="heading-page header-text">
-    <section class="page-heading">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-12">
-            <div class="text-content">
-              <h4>Post Details</h4>
-              <h2>{{ article.title }}</h2>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  </div>
-  
-  <!-- Banner Ends Here -->
-
-
-
-
-  <section class="blog-posts grid-system">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-8">
-          <div class="all-blog-posts">
-            <div class="row">
-              <div class="col-lg-12">
-                <div class="blog-post">
-                  <div class="blog-thumb">
-                    <img src="{{ article.image.url }}" alt="" width="770" height="340" >
-                  </div>
-                  <div class="down-content">
-                    <span>{{ article.category.first }}</span>
-                    <a href="post-details.html"><h4>{{ article.title }}</h4></a>
-                    <ul class="post-info">
-                      <li><a href="#">{{ article.author.get_full_name }}</a></li>
-                      <li><a href="#">{{ article.created }}</a></li>
-                      <li><a href="#">10 Comments</a></li>
-                    </ul>
-                    <P>{{ article.body }}</P>
-                    <div class="post-options">
-                      <div class="row">
-                        <div class="col-6">
-                          <ul class="post-tags">
-                            <li><i class="fa fa-tags"></i></li>
-                            <li><a href="#">Best Templates</a>,</li>
-                            <li><a href="#">TemplateMo</a></li>
-                          </ul>
-                        </div>
-                        <div class="col-6">
-                          <ul class="post-share">
-                            <li><i class="fa fa-share-alt"></i></li>
-                            <li><a href="#">Facebook</a>,</li>
-                            <li><a href="#"> Twitter</a></li>
-                          </ul>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="col-lg-12">
-                <div class="sidebar-item submit-comment">
-                  <div class="sidebar-heading">
-                    <h2>Your comment</h2>
-                  </div>
-                  <div class="content">
-                    <form id="comment" action="#" method="post">
-                      <div class="row">
-                        <div class="col-md-6 col-sm-12">
-                          <fieldset>
-                            <input name="name" type="text" id="name" placeholder="Your name" required="">
-                          </fieldset>
-                        </div>
-                        <div class="col-md-6 col-sm-12">
-                          <fieldset>
-                            <input name="email" type="text" id="email" placeholder="Your email" required="">
-                          </fieldset>
-                        </div>
-                        <div class="col-md-12 col-sm-12">
-                          <fieldset>
-                            <input name="subject" type="text" id="subject" placeholder="Subject">
-                          </fieldset>
-                        </div>
-                        <div class="col-lg-12">
-                          <fieldset>
-                            <textarea name="message" rows="6" id="message" placeholder="Type your comment" required=""></textarea>
-                          </fieldset>
-                        </div>
-                        <div class="col-lg-12">
-                          <fieldset>
-                            <button type="submit" id="form-submit" class="main-button">Submit</button>
-                          </fieldset>
-                        </div>
-                      </div>
-                    </form>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        {% include 'includes/sidebar.html' %}
-      </div>
     </div>
-  </section>
+    <!-- ***** Preloader End ***** -->
+
+    <!-- Header -->
+    <header class="">
+        <nav class="navbar navbar-expand-lg">
+            <div class="container">
+                <a class="navbar-brand" href="{% url 'home:home' %}"><h2>Stand Blog<em>.</em></h2></a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+                        aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'home:home' %}">Home
+                                <span class="sr-only">(current)</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="about.html">About Us</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'blog:articles_list' %}">Blog Entries</a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="post-details.html">Post Details</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="contact.html">Contact Us</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Page Content -->
+    <!-- Banner Starts Here -->
+    <div class="heading-page header-text">
+        <section class="page-heading">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="text-content">
+                            <h4>Post Details</h4>
+                            <h2>{{ article.title }}</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Banner Ends Here -->
+
+
+    <section class="blog-posts grid-system">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="all-blog-posts">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="blog-post">
+                                    <div class="blog-thumb">
+                                        <img src="{{ article.image.url }}" alt="" width="770" height="340">
+                                    </div>
+                                    <div class="down-content">
+                                        <span>{{ article.category.first }}</span>
+                                        <a href="post-details.html"><h4>{{ article.title }}</h4></a>
+                                        <ul class="post-info">
+                                            <li><a href="#">{{ article.author.get_full_name }}</a></li>
+                                            <li><a href="#">{{ article.created }}</a></li>
+                                            <li><a href="#">10 Comments</a></li>
+                                        </ul>
+                                        <P>{{ article.body }}</P>
+                                        <div class="post-options">
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <ul class="post-tags">
+                                                        <li><i class="fa fa-tags"></i></li>
+                                                        <li><a href="#">Best Templates</a>,</li>
+                                                        <li><a href="#">TemplateMo</a></li>
+                                                    </ul>
+                                                </div>
+                                                <div class="col-6">
+                                                    <ul class="post-share">
+                                                        <li><i class="fa fa-share-alt"></i></li>
+                                                        <li><a href="#">Facebook</a>,</li>
+                                                        <li><a href="#"> Twitter</a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-12">
+                                <div class="sidebar-item comments">
+                                    <div class="sidebar-heading">
+                                        <h2>4 comments</h2>
+                                    </div>
+                                    <div class="content">
+                                        <ul>
+                                            {% for comment in article.comments.all %}
+                                                {% if comment.parent == None %}
+                                                    <li>
+                                                        <div class="author-thumb">
+                                                            {% if comment.user.profile.image %}
+                                                                <img src="{{ comment.user.profile.image.url }}" alt="">
+                                                            {% else %}
+                                                                <img src="{% static 'accounts\images\noprofile.jpg' %}"
+                                                                     alt="">
+                                                            {% endif %}
+                                                        </div>
+                                                        <div class="right-content">
+                                                            <h4>{{ comment.user.username }}<span>{{ comment.created }}</span>
+                                                            </h4>
+                                                            <p>{{ comment.body }}</p>
+                                                        </div>
+                                                    </li>
+
+                                                    {% for reply in comment.replies.all %}
+                                                        <li class="replied">
+                                                            <div class="author-thumb">
+                                                                {% if reply.user.profile.image %}
+                                                                    <img src="{{ reply.user.profile.image.url }}" alt="">
+                                                                {% else %}
+                                                                    <img src="{% static 'accounts\images\noprofile.jpg' %}"
+                                                                         alt="">
+                                                                {% endif %}
+                                                            </div>
+                                                            <div class="right-content">
+                                                                <h4>{{ reply.user.username }}<span>{{ reply.created }}</span>
+                                                                </h4>
+                                                                <p>{{ reply.body }}</p>
+                                                            </div>
+                                                        </li>
+
+                                                    {% endfor %}
+                                                {% endif %}
+                                            {% endfor %}
+
+
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
+                                <div class="sidebar-item submit-comment">
+                                    <div class="sidebar-heading">
+                                        <h2>Your comment</h2>
+                                    </div>
+                                    <div class="content">
+                                        <form id="comment" action="#" method="post">
+                                            <div class="row">
+                                                <div class="col-md-6 col-sm-12">
+                                                    <fieldset>
+                                                        <input name="name" type="text" id="name" placeholder="Your name"
+                                                               required="">
+                                                    </fieldset>
+                                                </div>
+                                                <div class="col-md-6 col-sm-12">
+                                                    <fieldset>
+                                                        <input name="email" type="text" id="email"
+                                                               placeholder="Your email" required="">
+                                                    </fieldset>
+                                                </div>
+                                                <div class="col-md-12 col-sm-12">
+                                                    <fieldset>
+                                                        <input name="subject" type="text" id="subject"
+                                                               placeholder="Subject">
+                                                    </fieldset>
+                                                </div>
+                                                <div class="col-lg-12">
+                                                    <fieldset>
+                                                        <textarea name="message" rows="6" id="message"
+                                                                  placeholder="Type your comment"
+                                                                  required=""></textarea>
+                                                    </fieldset>
+                                                </div>
+                                                <div class="col-lg-12">
+                                                    <fieldset>
+                                                        <button type="submit" id="form-submit" class="main-button">
+                                                            Submit
+                                                        </button>
+                                                    </fieldset>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% include 'includes/sidebar.html' %}
+            </div>
+        </div>
+    </section>
 {% endblock %}
