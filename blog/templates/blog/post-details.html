@@ -134,6 +134,7 @@
                                                             <h4>{{ comment.user.username }}<span>{{ comment.created }}</span>
                                                             </h4>
                                                             <p>{{ comment.body }}</p>
+                                                            <button class="btn btn-primary" onclick="set_value({{ comment.id }})" >Reply</button>
                                                         </div>
                                                     </li>
 
@@ -163,35 +164,21 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg-12">
+                            <div class="col-lg-12" id='cmbody' >
                                 <div class="sidebar-item submit-comment">
                                     <div class="sidebar-heading">
                                         <h2>Your comment</h2>
                                     </div>
-                                    <div class="content">
+                                    {% if request.user.is_authenticated %}
+                                    <div class="content"  >
                                         <form id="comment" action="#" method="post">
+                                            {% csrf_token %}
                                             <div class="row">
-                                                <div class="col-md-6 col-sm-12">
-                                                    <fieldset>
-                                                        <input name="name" type="text" id="name" placeholder="Your name"
-                                                               required="">
-                                                    </fieldset>
-                                                </div>
-                                                <div class="col-md-6 col-sm-12">
-                                                    <fieldset>
-                                                        <input name="email" type="text" id="email"
-                                                               placeholder="Your email" required="">
-                                                    </fieldset>
-                                                </div>
-                                                <div class="col-md-12 col-sm-12">
-                                                    <fieldset>
-                                                        <input name="subject" type="text" id="subject"
-                                                               placeholder="Subject">
-                                                    </fieldset>
-                                                </div>
+                                                <input type="hidden" name="parent_id" id="parent_id" value=""  >
+
                                                 <div class="col-lg-12">
                                                     <fieldset>
-                                                        <textarea name="message" rows="6" id="message"
+                                                        <textarea name="body" rows="6" id="message"
                                                                   placeholder="Type your comment"
                                                                   required=""></textarea>
                                                     </fieldset>
@@ -206,6 +193,9 @@
                                             </div>
                                         </form>
                                     </div>
+                                    {% else %}
+                                        <a class="btn btn-warning" href="{% url 'accounts:login' %}"> please login to add comment</a>
+                                    {% endif %}
                                 </div>
                             </div>
                         </div>
@@ -215,4 +205,13 @@
             </div>
         </div>
     </section>
+
+<script>
+    function set_value(id){
+        document.getElementById('parent_id').value = id;
+        window.location.href = "#cmbody"
+    }
+</script>    
+
+
 {% endblock %}

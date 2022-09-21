@@ -1,10 +1,16 @@
 from django.shortcuts import render,get_object_or_404
-from .models import Article,Category
+from .models import Article,Category,Comment
 from django.core.paginator import Paginator
 # Create your views here.
 def post_detail(request,slug):
     article = get_object_or_404(Article,slug=slug)
     recent_articles=Article.objects.all().order_by('-updated')[:4]
+
+    if request.method == 'POST':
+        body = request.POST.get('body')
+        parent_id = request.POST.get('parent_id')
+        Comment.objects.create(body=body,user=request.user,article=article,parent_id=parent_id)
+
     return render (request,'blog/post-details.html',{ 'article':article , 'recent_articles':recent_articles  })
 
 def articles_list(request):
