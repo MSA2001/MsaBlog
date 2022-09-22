@@ -24,3 +24,12 @@ def category_detail(request,pk=None):
     category=Category.objects.get(id=pk)
     articles= category.articles.all()    #article_set==>articles
     return render(request, 'blog/articles_list.html', {'articles': articles})
+
+
+def search(request):
+    q = request.GET.get('q')
+    articles = Article.objects.filter(title__icontains=q)
+    page_number = request.GET.get('page')
+    paginator = Paginator(articles,2)
+    object_list = paginator.get_page(page_number)
+    return render (request,'blog/articles_list.html',{'articles' : object_list})
