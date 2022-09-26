@@ -50,6 +50,7 @@ class Comment(models.Model):
 
 
 class Message(models.Model):
+    user = models.ForeignKey(User,null=True,blank=True,on_delete=models.CASCADE)
     title = models.CharField(max_length=100)
     text = models.TextField()
     email = models.EmailField()

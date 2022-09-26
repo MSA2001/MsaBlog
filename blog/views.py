@@ -43,7 +43,7 @@ def contact_us(request):
             title = form.cleaned_data['title']
             text = form.cleaned_data['text']
             email = form.cleaned_data['email']
-            Message.objects.create(title=title,text=text,email=email)
+            Message.objects.create(title=title,text=text,email=email,user=request.user)
             return redirect ('home:home')
     else:
         form = MessageForm        
