@@ -1,4 +1,5 @@
 import email
+from email import message
 from django.shortcuts import render,get_object_or_404,redirect
 from .models import Article,Category,Comment,Message
 from django.core.paginator import Paginator
@@ -40,10 +41,9 @@ def contact_us(request):
     if request.method == 'POST':  
         form = MessageForm(request.POST)
         if form.is_valid():
-            title = form.cleaned_data['title']
-            text = form.cleaned_data['text']
-            email = form.cleaned_data['email']
-            Message.objects.create(title=title,text=text,email=email,user=request.user)
+            message = form.save(commit=False)
+            message.user = request.user
+            message.save()
             return redirect ('home:home')
     else:
         form = MessageForm        
