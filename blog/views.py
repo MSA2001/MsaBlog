@@ -1,6 +1,8 @@
-from django.shortcuts import render,get_object_or_404
-from .models import Article,Category,Comment
+import email
+from django.shortcuts import render,get_object_or_404,redirect
+from .models import Article,Category,Comment,Message
 from django.core.paginator import Paginator
+from .forms import ContactUsForm , MessageForm
 # Create your views here.
 def post_detail(request,slug):
     article = get_object_or_404(Article,slug=slug)
@@ -33,3 +35,16 @@ def search(request):
     paginator = Paginator(articles,2)
     object_list = paginator.get_page(page_number)
     return render (request,'blog/articles_list.html',{'articles' : object_list})
+
+def contact_us(request):
+    if request.method == 'POST':  
+        form = MessageForm(request.POST)
+        if form.is_valid():
+            title = form.cleaned_data['title']
+            text = form.cleaned_data['text']
+            email = form.cleaned_data['email']
+            Message.objects.create(title=title,text=text,email=email)
+            return redirect ('home:home')
+    else:
+        form = MessageForm        
+    return render (request,'blog/contact_us.html',{'form':form})
