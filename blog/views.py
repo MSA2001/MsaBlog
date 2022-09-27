@@ -3,7 +3,7 @@ from email import message
 from django.shortcuts import render,get_object_or_404,redirect
 from .models import Article,Category,Comment,Message
 from django.core.paginator import Paginator
-from .forms import ContactUsForm , MessageForm
+from .forms import  MessageForm
 # Create your views here.
 def post_detail(request,slug):
     article = get_object_or_404(Article,slug=slug)
