@@ -14,10 +14,10 @@ class LoginForm(forms.Form):
     
     
 class RegisterForm(forms.Form):
-    username = forms.CharField(widget=forms.TextInput(attrs={"class":"input100"}))
-    email = forms.CharField(widget=forms.EmailInput(attrs={"class":"input100"}))
-    password1 = forms.CharField(widget=forms.PasswordInput(attrs={"class":"input100"}))
-    password2 = forms.CharField(widget=forms.PasswordInput(attrs={"class":"input100"}))
+    username = forms.CharField(widget=forms.TextInput(attrs={"class": "input100"}))
+    email = forms.CharField(widget=forms.EmailInput(attrs={"class": "input100"}))
+    password1 = forms.CharField(widget=forms.PasswordInput(attrs={"class": "input100"}))
+    password2 = forms.CharField(widget=forms.PasswordInput(attrs={"class": "input100"}))
     
     def clean(self):
         password1 = self.cleaned_data.get('password1')
