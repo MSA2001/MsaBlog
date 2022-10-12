@@ -40,14 +40,14 @@ def user_register(request):
             login(request,user)
             return redirect('home:home') 
     else:
-        form=RegisterForm()      
-    return render(request,'accounts/register.html',{'form':form})
+        form = RegisterForm()
+    return render(request, 'accounts/register.html', {'form':form})
 
 def user_edit(request):
     user = request.user
     form = UserEditForm(instance=user)
     if request.method == 'POST':
-        form = UserEditForm(instance=user,data=request.POST)
+        form = UserEditForm(instance=user, data=request.POST)
         if form.is_valid():
             form.save()
     return render(request, 'accounts/edit.html', {'form': form})
