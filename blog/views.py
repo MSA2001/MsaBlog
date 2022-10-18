@@ -18,12 +18,17 @@ def post_detail(request,slug):
 
     return render (request,'blog/post-details.html',{ 'article':article , 'recent_articles':recent_articles  })
 
+
+
+
 def articles_list(request):
     articles = Article.objects.all().order_by('-created')
     page_number = request.GET.get('page')
     paginator = Paginator(articles,2)
     object_list = paginator.get_page(page_number)
     return render(request,'blog/articles_list.html',{ 'articles':object_list })
+
+
 
 def category_detail(request,pk=None):
     category=Category.objects.get(id=pk)
@@ -49,10 +54,16 @@ def contact_us(request):
             return redirect ('home:home')
     else:
         form = MessageForm        
-    return render (request,'blog/contact_us.html',{'form':form})
+    return render(request,'blog/contact_us.html', {'form': form})
 
-class MyClassView(View):
-    name = 'mamad'
+class ListView(View):
+    queryset = None
+    template_name = None
+
     def get(self,request):
+        return render(request, self.template_name, {'articles': self.queryset})
 
-        return HttpResponse(self.name)
+class ArticleList(ListView):
+    queryset = Article.objects.all().order_by('-updated')
+    template_name = "blog/articles_list.html"
+
