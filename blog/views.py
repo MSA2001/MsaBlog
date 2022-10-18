@@ -1,9 +1,11 @@
 import email
 from email import message
 from django.shortcuts import render,get_object_or_404,redirect
+from django.http import HttpResponse
 from .models import Article,Category,Comment,Message
 from django.core.paginator import Paginator
 from .forms import  MessageForm
+from django.views import View
 # Create your views here.
 def post_detail(request,slug):
     article = get_object_or_404(Article,slug=slug)
@@ -48,3 +50,9 @@ def contact_us(request):
     else:
         form = MessageForm        
     return render (request,'blog/contact_us.html',{'form':form})
+
+class MyClassView(View):
+    name = 'mamad'
+    def get(self,request):
+
+        return HttpResponse(self.name)
