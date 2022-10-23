@@ -2,7 +2,7 @@ from logging import PlaceHolder
 from tkinter import CASCADE
 from turtle import title
 from unicodedata import category
-from unittest.util import _MAX_LENGTH
+
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils.text import slugify
@@ -23,7 +23,7 @@ class Article(models.Model):
     author = models.ForeignKey(User,on_delete=models.CASCADE)
     category=models.ManyToManyField(Category,related_name='articles')
     title = models.CharField(max_length=70)
-    slug =models.SlugField(blank=True,unique=True)
+    slug = models.SlugField(blank=True, unique=True)
     body = models.TextField()
     image = models.ImageField(upload_to='images/articles')
     created = models.DateTimeField(auto_now_add=True)
@@ -58,4 +58,4 @@ class Message(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     
     def __str__(self):
-        return  self.title
+        return self.title

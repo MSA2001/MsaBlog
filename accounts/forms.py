@@ -4,8 +4,8 @@ from django.forms import ValidationError
 from django.contrib.auth.models import User
 
 class LoginForm(forms.Form):
-    username = forms.CharField(widget=forms.TextInput(attrs={"class": "input100"}))
-    password = forms.CharField(widget=forms.PasswordInput(attrs={"class": "input100"}))
+    username = forms.CharField(widget=forms.TextInput(attrs={"class": "input100", "placeholder": "username"}))
+    password = forms.CharField(widget=forms.PasswordInput(attrs={"class": "input100", "placeholder": "Password"}))
     
     def clean_password(self):
         user = authenticate( username=self.cleaned_data.get('username'), password=self.cleaned_data.get('password'))
@@ -15,10 +15,10 @@ class LoginForm(forms.Form):
     
     
 class RegisterForm(forms.Form):
-    username = forms.CharField(widget=forms.TextInput(attrs={"class": "input100"}))
-    email = forms.CharField(widget=forms.EmailInput(attrs={"class": "input100"}))
-    password1 = forms.CharField(widget=forms.PasswordInput(attrs={"class": "input100"}))
-    password2 = forms.CharField(widget=forms.PasswordInput(attrs={"class": "input100"}))
+    username = forms.CharField(widget=forms.TextInput(attrs={"class": "input100", "placeholder": "Username"}))
+    email = forms.CharField(widget=forms.EmailInput(attrs={"class": "input100", "placeholder": "Email"}))
+    password1 = forms.CharField(widget=forms.PasswordInput(attrs={"class": "input100", "placeholder": "Password"}))
+    password2 = forms.CharField(widget=forms.PasswordInput(attrs={"class": "input100", "placeholder": "Confirm Password"}))
     
     def clean(self):
         password1 = self.cleaned_data.get('password1')
