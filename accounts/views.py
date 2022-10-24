@@ -29,19 +29,20 @@ def user_logout(request):
     logout(request)
     return redirect('home:home')
 
+
 def user_register(request):
-    if request.user.is_authenticated == True:
+    if request.user.is_authenticated== True:
         return redirect('home:home')
     
     if request.method =='POST':
         form = RegisterForm(request.POST)
         if form.is_valid():
-            user = User.objects.create(username=form.cleaned_data.get('username'),email=form.cleaned_data.get('email'))
-            login(request,user)
+            user = User.objects.create(username=form.cleaned_data.get('username'), email=form.cleaned_data.get('email'))
+            login(request, user)
             return redirect('home:home') 
     else:
         form = RegisterForm()
-    return render(request, 'accounts/register.html', {'form':form})
+    return render(request, 'accounts/register.html', {'form': form})
 
 def user_edit(request):
     user = request.user

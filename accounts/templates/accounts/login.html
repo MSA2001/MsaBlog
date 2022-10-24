@@ -38,11 +38,20 @@
 					<span class="login100-form-logo">
 						<i class="zmdi zmdi-landscape"></i>
 					</span>
-					<p>  {{ form.errors }}  </p>
+
 
 					<span class="login100-form-title p-b-34 p-t-27">
 						Log in
 					</span>
+                    {% if form.errors %}
+                        {% for error in form.password.errors %}
+                            <div class="alert alert-danger" role="alert">
+                            {{ error }}
+                            </div>
+                        {% endfor %}
+                     {% endif %}
+
+
 					<div class="wrap-input100 validate-input" data-validate = "Enter username">
 						{{ form.username }}
 						<span class="focus-input100" data-placeholder="&#xf207;"></span>

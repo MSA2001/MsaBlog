@@ -42,9 +42,21 @@
 					<span class="login100-form-title p-b-34 p-t-27">
 						Register
 					</span>
-					 <h5> {{ form.non_field_errors }} </h5>
-                     
 
+
+                    {% if form.errors %}
+
+                        {% for error in form.username.errors %}
+                            <div class="alert alert-danger" role="alert">
+                            {{ error }}
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                {% if form.non_field_errors %}
+                 <div class="alert alert-danger" role="alert">
+                             {{ form.non_field_errors }}
+                            </div>
+                {% endif %}
 
 					<div class="wrap-input100 validate-input" data-validate = "Enter username">
 						{{ form.username }}
