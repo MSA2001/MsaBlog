@@ -60,6 +60,8 @@ def contact_us(request):
         form = MessageForm        
     return render(request, 'blog/contact_us.html', {'form': form})
 
+def About(request):
+    return render(request, 'blog/about.html')
 
 
 

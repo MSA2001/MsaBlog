@@ -33,17 +33,42 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="about.html">About Us</a>
+                            <a class="nav-link" href="{% url 'blog:about' %}">About Us</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{% url 'blog:articles_list' %}">Blog Entries</a>
                         </li>
-                        <li class="nav-item active">
-                            <a class="nav-link" href="article_detail.html">Post Details</a>
-                        </li>
+
                         <li class="nav-item">
                             <a class="nav-link" href="{% url 'blog:contact_us' %}">Contact Us</a>
                         </li>
+                        <li class="nav-item">
+              {% if request.user.is_authenticated %}
+                {% if request.user.first_name %}
+                <div class="d-flex">
+                  <a class="nav-link" href="{% url 'accounts:edit' %}">{{ request.user.first_name }}  </a>
+                {% else %}
+                 <div class="d-flex">
+                  <a class="nav-link" href="{% url 'accounts:edit' %}">{{ request.user.username }}  </a>
+                {% endif %}
+                {% if user.profile.image %}
+                <span>
+                    <img src="{{ user.profile.image.url }}" width='33px' height='33px' style='border-radius:70%' >
+                </span>
+                {% else %}
+                    <img src="{% static 'accounts\images\noprofile.jpg' %}" width='33px' height='33px' style='border-radius:70%' >
+
+                {% endif %}
+                <a class="nav-link" href="{% url 'accounts:logout' %}">  Logout</a>
+                  </div>
+              {% else %}
+              <div class="d-flex">
+              <a class="nav-link" href="{% url 'accounts:login' %}">Login  </a>
+
+              <a class="nav-link" href="{% url 'accounts:register' %}">  Register</a>
+              {% endif %}
+              </div>
+            </li>
                     </ul>
                 </div>
             </div>
@@ -83,7 +108,7 @@
                                     </div>
                                     <div class="down-content">
                                         <span>{{ article.category.first }}</span>
-                                        <a href="article_detail.html"><h4>{{ article.title }}</h4></a>
+                                        <a href="{% url 'blog:detail' article.slug  %}"><h4>{{ article.title }}</h4></a>
                                         <ul class="post-info">
                                             <li><a href="#">{{ article.author.get_full_name }}</a></li>
                                             <li><a href="#">{{ article.created }}</a></li>
