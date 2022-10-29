@@ -140,7 +140,7 @@
                             <div class="col-lg-12">
                                 <div class="sidebar-item comments">
                                     <div class="sidebar-heading">
-                                        <h2>4 comments</h2>
+                                        <h2>{{ article.comments.count }} Comments </h2>
                                     </div>
                                     <div class="content">
                                         <ul>
@@ -149,7 +149,7 @@
                                                     <li>
                                                         <div class="author-thumb">
                                                             {% if comment.user.profile.image %}
-                                                                <img src="{{ comment.user.profile.image.url }}" alt="">
+                                                                <img src="{{ comment.user.profile.image.url }}" alt=""  >
                                                             {% else %}
                                                                 <img src="{% static 'accounts\images\noprofile.jpg' %}"
                                                                      alt="">
@@ -219,7 +219,7 @@
                                         </form>
                                     </div>
                                     {% else %}
-                                        <a class="btn btn-warning" href="{% url 'accounts:login' %}"> please login to add comment</a>
+                                        <a class="btn btn-dark" href="{% url 'accounts:login' %}"> please login to add comment</a>
                                     {% endif %}
                                 </div>
                             </div>

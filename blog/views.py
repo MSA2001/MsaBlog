@@ -18,6 +18,7 @@ def post_detail(request, slug):
         body = request.POST.get('body')
         parent_id = request.POST.get('parent_id')
         Comment.objects.create(body=body, user=request.user, article=article, parent_id=parent_id)
+        return redirect("blog:detail",slug=slug)
 
     return render(request, 'blog/article_detail.html', {'article': article, 'recent_articles': recent_articles})
 
