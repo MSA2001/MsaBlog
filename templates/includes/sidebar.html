@@ -18,7 +18,7 @@
                                     </div>
                                     <div class="content">
                                         <ul>
-                                            {% for article in recent_articles %}
+                                            {% for article in recent_articles|slice:":5" %}
                                                 <li><a href="{% url 'blog:detail' article.slug %}">
                                                     <h5>{{ article.title }}</h5>
                                                     <span>{{ article.created }}</span>
@@ -28,29 +28,16 @@
                                     </div>
                                 </div>
                             </div>
+
                             <div class="col-lg-12">
-                                <div class="sidebar-item categories">
+                                <div class="sidebar-item tags">
                                     <div class="sidebar-heading">
                                         <h2>Categories</h2>
                                     </div>
                                     <div class="content">
                                         <ul>
                                             {% for category in categories %}
-                                            <li><a href="{% url 'blog:category_detail' category.id %}">{{ category.title }}</a></li>
-                                            {% endfor %}
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-12">
-                                <div class="sidebar-item tags">
-                                    <div class="sidebar-heading">
-                                        <h2>Tag Clouds</h2>
-                                    </div>
-                                    <div class="content">
-                                        <ul>
-                                            {% for category in categories %}
-                                            <li><a href="#">{{ category.title }}</a></li>
+                                             <li><a href="{% url 'blog:category_detail' category.id %}">{{ category.title }}</a></li>
                                             {% endfor %}
                                     </div>
                                 </div>
