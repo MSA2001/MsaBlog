@@ -57,7 +57,6 @@ class Comment(models.Model):
         return format_html(f"<img src='{self.user.profile.image.url}' width='45px' height='45px'> ")
 
 
-
 class Message(models.Model):
     user = models.ForeignKey(User, null=True, blank=True, on_delete=models.CASCADE)
     title = models.CharField(max_length=100)
@@ -67,3 +66,9 @@ class Message(models.Model):
     
     def __str__(self):
         return self.title
+
+
+class Like(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='likes')
+    article = models.ForeignKey(Article, on_delete=models.CASCADE, related_name='likes')
+    created_at = models.DateTimeField(auto_now_add=True)

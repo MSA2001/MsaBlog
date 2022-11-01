@@ -121,8 +121,10 @@
                                                     <div class="col-lg-12">
                                                         <ul class="post-tags">
                                                             <li><i class="fa fa-tags"></i></li>
-                                                            <li><a href="#">Best Templates</a>,</li>
-                                                            <li><a href="#">TemplateMo</a></li>
+                                                            {{ article.articles.title }}
+                                                        {% for cat in category|slice:":3" %}
+                                                        <li><a href="{% url 'blog:category_detail' cat.id %}">{{ cat.title }}</a></li>
+                                                        {% endfor %}
                                                         </ul>
                                                     </div>
                                                 </div>

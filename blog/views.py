@@ -13,14 +13,14 @@ from django.views.generic.base import TemplateView, View, RedirectView
 def post_detail(request, slug):
     article = get_object_or_404(Article, slug=slug)
     recent_articles = Article.objects.all().order_by('-updated')[:4]
-
+    category = article.category.all()
     if request.method == 'POST':
         body = request.POST.get('body')
         parent_id = request.POST.get('parent_id')
         Comment.objects.create(body=body, user=request.user, article=article, parent_id=parent_id)
-        return redirect("blog:detail",slug=slug)
+        return redirect("blog:detail", slug=slug)
 
-    return render(request, 'blog/article_detail.html', {'article': article, 'recent_articles': recent_articles})
+    return render(request, 'blog/article_detail.html', {'article': article, 'recent_articles': recent_articles, 'category': category})
 
 
 
@@ -30,13 +30,13 @@ def articles_list(request):
     page_number = request.GET.get('page')
     paginator = Paginator(articles, 2)
     object_list = paginator.get_page(page_number)
-    return render(request,'blog/articles_list.html', {'articles': object_list})
+    return render(request, 'blog/articles_list.html', {'articles': object_list})
 
 
 
 def category_detail(request, pk=None):
-    category=Category.objects.get(id=pk)
-    articles= category.articles.all()
+    category = Category.objects.get(id=pk)
+    articles = category.articles.all()
     return render(request, 'blog/articles_list.html', {'articles': articles})
 
 

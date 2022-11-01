@@ -112,23 +112,23 @@
                                         <ul class="post-info">
                                             <li><a href="#">{{ article.author.get_full_name }}</a></li>
                                             <li><a href="#">{{ article.created }}</a></li>
-                                            <li><a href="#">10 Comments</a></li>
+                                            <li><a href="#">{{ article.comments.count }} Comments</a></li>
                                         </ul>
                                         <P>{{ article.body }}</P>
                                         <div class="post-options">
                                             <div class="row">
                                                 <div class="col-6">
                                                     <ul class="post-tags">
-                                                        <li><i class="fa fa-tags"></i></li>
-                                                        <li><a href="#">Best Templates</a>,</li>
-                                                        <li><a href="#">TemplateMo</a></li>
+                                                        <li> <a href="#"> <i class="fa fa-heart-o"></i> </a> 0 Likes  </li>
                                                     </ul>
                                                 </div>
                                                 <div class="col-6">
                                                     <ul class="post-share">
-                                                        <li><i class="fa fa-share-alt"></i></li>
-                                                        <li><a href="#">Facebook</a>,</li>
-                                                        <li><a href="#"> Twitter</a></li>
+                                                        <li><i class="fa fa-tags"></i></li>
+                                                        {% for cat in category|slice:":3" %}
+                                                        <li><a href="{% url 'blog:category_detail' cat.id %}">{{ cat.title }}</a></li>
+                                                        {% endfor %}
+
                                                     </ul>
                                                 </div>
                                             </div>
