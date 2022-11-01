@@ -30,7 +30,10 @@ def articles_list(request):
     page_number = request.GET.get('page')
     paginator = Paginator(articles, 2)
     object_list = paginator.get_page(page_number)
-    return render(request, 'blog/articles_list.html', {'articles': object_list})
+    for article in articles:
+        category = article.category.all()
+
+    return render(request, 'blog/articles_list.html', {'articles': object_list, 'category': category})
 
 
 

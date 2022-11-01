@@ -16,150 +16,155 @@
 
     <!-- Header -->
     <header class="">
-      <nav class="navbar navbar-expand-lg">
-        <div class="container">
-          <a class="navbar-brand" href="{% url 'home:home' %}"><h2>MSA Blog<em>.</em></h2></a>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarResponsive">
-            <ul class="navbar-nav ml-auto">
-              <li class="nav-item active">
-                <a class="nav-link" href="{% url 'home:home' %}">Home
-                  <span class="sr-only">(current)</span>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="{% url 'blog:about' %}">About Us</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="{% url 'blog:articles_list' %}">Blog Entries</a>
-              </li>
-              
-              <li class="nav-item">
-                <a class="nav-link" href="{% url 'blog:contact_us' %}">Contact Us</a>
-              </li>
-              <li class="nav-item">
-              {% if request.user.is_authenticated %}
-                {% if request.user.first_name %}
-                <div class="d-flex">
-                  <a class="nav-link" href="{% url 'accounts:edit' %}">{{ request.user.first_name }}  </a>
-                {% else %}
-                 <div class="d-flex">
-                  <a class="nav-link" href="{% url 'accounts:edit' %}">{{ request.user.username }}  </a>
-                {% endif %}
-                  &nbsp;&nbsp;&nbsp;
-                {% if user.profile.image %}
-                <span>
-                    <img src="{{ user.profile.image.url }}" width='33px' height='33px' style='border-radius:70%' >
-                </span>
-                {% else %}
-                    <img src="{% static 'accounts\images\noprofile.jpg' %}" width='33px' height='33px' style='border-radius:70%' >
+        <nav class="navbar navbar-expand-lg">
+            <div class="container">
+                <a class="navbar-brand" href="{% url 'home:home' %}"><h2>MSA Blog<em>.</em></h2></a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+                        aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="{% url 'home:home' %}">Home
+                                <span class="sr-only">(current)</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'blog:about' %}">About Us</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'blog:articles_list' %}">Blog Entries</a>
+                        </li>
 
-                {% endif %}
-                  &nbsp;&nbsp;&nbsp;
-                <a class="nav-link" href="{% url 'accounts:logout' %}">  Logout</a>
-                  </div>
-              {% else %}
-              <div class="d-flex">
-              <a class="nav-link" href="{% url 'accounts:login' %}">Login  </a>
-               &nbsp;&nbsp;&nbsp;
-              <a class="nav-link" href="{% url 'accounts:register' %}">  Register</a>
-              {% endif %}
-              </div>
-            </li>
-            </ul>
-          </div>
-        </div>
-      </nav>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'blog:contact_us' %}">Contact Us</a>
+                        </li>
+                        <li class="nav-item">
+                            {% if request.user.is_authenticated %}
+                                {% if request.user.first_name %}
+                                    <div class="d-flex">
+                                    <a class="nav-link"
+                                       href="{% url 'accounts:edit' %}">{{ request.user.first_name }}  </a>
+                                {% else %}
+                                    <div class="d-flex">
+                                    <a class="nav-link"
+                                       href="{% url 'accounts:edit' %}">{{ request.user.username }}  </a>
+                                {% endif %}
+                            &nbsp;&nbsp;&nbsp;
+                            {% if user.profile.image %}
+                                <span>
+                    <img src="{{ user.profile.image.url }}" width='33px' height='33px' style='border-radius:70%'>
+                </span>
+                            {% else %}
+                                <img src="{% static 'accounts\images\noprofile.jpg' %}" width='33px' height='33px'
+                                     style='border-radius:70%'>
+
+                            {% endif %}
+                            &nbsp;&nbsp;&nbsp;
+                            <a class="nav-link" href="{% url 'accounts:logout' %}"> Logout</a>
+                            </div>
+                            {% else %}
+                                <div class="d-flex">
+                                <a class="nav-link" href="{% url 'accounts:login' %}">Login </a>
+                                &nbsp;&nbsp;&nbsp;
+                                <a class="nav-link" href="{% url 'accounts:register' %}"> Register</a>
+                            {% endif %}
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
     </header>
 
     <!-- Page Content -->
     <!-- Banner Starts Here -->
     <div class="main-banner header-text">
-      <div class="container-fluid">
-        <div class="owl-banner owl-carousel">
-          {% for article in articles %}
-          <div class="item">
-              <a href="{% url 'blog:detail' article.slug  %}"> <img src="{{ article.image.url }}" alt="" height="450px" width="520px" > </a>
-            <div class="item-content">
-              <div class="main-content">
-                <div class="meta-category">
-                  <span>{{ article.category.first.title }}</span>
-                </div>
-                <a href="{% url 'blog:detail' article.slug  %}"><h4>{{ article.title }}</h4></a>
-                <ul class="post-info">
-                  <li><a href="#">{{ article.author.username }}</a></li>
-                  <li><a href="#">{{ article.created }}</a></li>
-                  <li><a href="#">12 Comments</a></li>
-                </ul>
-              </div>
+        <div class="container-fluid">
+            <div class="owl-banner owl-carousel">
+                {% for article in articles %}
+                    <div class="item">
+                        <a href="{% url 'blog:detail' article.slug %}"> <img src="{{ article.image.url }}" alt=""
+                                                                             height="450px" width="520px"> </a>
+                        <div class="item-content">
+                            <div class="main-content">
+                                <div class="meta-category">
+                                    <span>{{ article.category.first.title }}</span>
+                                </div>
+                                <a href="{% url 'blog:detail' article.slug %}"><h4>{{ article.title }}</h4></a>
+                                <ul class="post-info">
+                                    <li><a href="#">{{ article.author.username }}</a></li>
+                                    <li><a href="#">{{ article.created }}</a></li>
+                                    <li><a href="#">12 Comments</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
             </div>
-          </div>
-          {% endfor %}
         </div>
-      </div>
     </div>
     <!-- Banner Ends Here -->
 
 
 
     <section class="blog-posts">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-8">
-            <div class="all-blog-posts">
-              <div class="row">
-                <div class="col-lg-12">
-                  {% for article in articles|slice:":3" %}
-                  <div class="blog-post">
-                    <div class="blog-thumb">
-                        <a href="{% url 'blog:detail' article.slug  %}"> <img src="{{ article.image.url }}" alt="post-image" width="770" height="400" ></a>
-                    </div>
-                    <div class="down-content">
-                      <span>Lifestyle</span>
-                      <a href="{% url 'blog:detail' article.slug  %}"><h4>{{ article.title }}</h4></a>
-                      <ul class="post-info">
-                        <li><a href="#">{{ article.author.username }}</a></li>
-                        <li><a href="#">{{ article.created }}</a></li>
-                        <li><a href="#">12 Comments</a></li>
-                      </ul>
-                      <p>{{ article.body|truncatewords:50 }}</p>
-                      <div class="post-options">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="all-blog-posts">
                         <div class="row">
-                          <div class="col-6">
-                            <ul class="post-tags">
-                              <li><i class="fa fa-tags"></i></li>
-                              <li><a href="#">Beauty</a>,</li>
-                              <li><a href="#">Nature</a></li>
-                            </ul>
-                          </div>
-                          <div class="col-6">
-                            <ul class="post-share">
-                              <li><i class="fa fa-share-alt"></i></li>
-                              <li><a href="#">Facebook</a>,</li>
-                              <li><a href="#"> Twitter</a></li>
-                            </ul>
-                          </div>
+                            <div class="col-lg-12">
+                                {% for article in articles|slice:":3" %}
+                                    <div class="blog-post">
+                                        <div class="blog-thumb">
+                                            <a href="{% url 'blog:detail' article.slug %}"> <img
+                                                    src="{{ article.image.url }}" alt="post-image" width="770"
+                                                    height="400"></a>
+                                        </div>
+                                        <div class="down-content">
+                                            <span>Lifestyle</span>
+                                            <a href="{% url 'blog:detail' article.slug %}"><h4>{{ article.title }}</h4>
+                                            </a>
+                                            <ul class="post-info">
+                                                <li><a href="#">{{ article.author.username }}</a></li>
+                                                <li><a href="#">{{ article.created }}</a></li>
+                                                <li><a href="#">12 Comments</a></li>
+                                            </ul>
+                                            <p>{{ article.body|truncatewords:50 }}</p>
+                                            <div class="post-options">
+                                                <div class="row">
+                                                    <div class="col-6">
+                                                        <ul class="post-tags">
+                                                            <li><i class="fa fa-tags"></i></li>
+
+                                                            <li><a href="#">{{ article.category.all.first }}</a></li>
+                                                            {% if  article.category.all.last !=  article.category.all.first %}
+                                                                <li><a href="#">{{ article.category.all.last }}</a></li>
+                                                            {% endif %}
+                                                        </ul>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            </div>
+
+
+                            <div class="col-lg-12">
+                                <div class="main-button">
+                                    <a href="{% url 'blog:articles_list' %}">View All Posts</a>
+                                </div>
+                            </div>
                         </div>
-                      </div>
                     </div>
-                  </div>
-                  {% endfor %}
                 </div>
-
-
-                <div class="col-lg-12">
-                  <div class="main-button">
-                    <a href="{% url 'blog:articles_list' %}">View All Posts</a>
-                  </div>
-                </div>
-              </div>
+                {% include 'includes/sidebar.html' %}
             </div>
-          </div>
-          {% include 'includes/sidebar.html' %}
         </div>
-      </div>
     </section>
 {% endblock %}
 
