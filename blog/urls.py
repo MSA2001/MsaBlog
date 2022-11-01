@@ -10,6 +10,7 @@ urlpatterns = [
     path('search/', views.search, name='search_articles'),
     path('contact', views.contact_us, name='contact_us'),
     path('about', views.About, name='about'),
+    path('Like/<slug:slug>/<int:pk>', views.like, name='like')
 
 
 ]
