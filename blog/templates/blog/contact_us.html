@@ -39,33 +39,38 @@
               <li class="nav-item active">
                 <a class="nav-link" href="{% url 'blog:contact_us' %}">Contact Us</a>
               </li>
-                <li class="nav-item">
-              {% if request.user.is_authenticated %}
-                {% if request.user.first_name %}
-                <div class="d-flex">
-                  <a class="nav-link" href="{% url 'accounts:edit' %}">{{ request.user.first_name }}  </a>
-                {% else %}
-                 <div class="d-flex">
-                  <a class="nav-link" href="{% url 'accounts:edit' %}">{{ request.user.username }}  </a>
-                {% endif %}
-                {% if user.profile.image %}
-                <span>
-                    <img src="{{ user.profile.image.url }}" width='33px' height='33px' style='border-radius:70%' >
+               <li class="nav-item">
+                            {% if request.user.is_authenticated %}
+                                {% if request.user.first_name %}
+                                    <div class="d-flex">
+                                    <a class="nav-link"
+                                       href="{% url 'accounts:edit' %}">{{ request.user.first_name }}  </a>
+                                {% else %}
+                                    <div class="d-flex">
+                                    <a class="nav-link"
+                                       href="{% url 'accounts:edit' %}">{{ request.user.username }}  </a>
+                                {% endif %}
+                            &nbsp;&nbsp;&nbsp;
+                            {% if user.profile.image %}
+                                <span>
+                    <img src="{{ user.profile.image.url }}" width='33px' height='33px' style='border-radius:70%'>
                 </span>
-                {% else %}
-                    <img src="{% static 'accounts\images\noprofile.jpg' %}" width='33px' height='33px' style='border-radius:70%' >
+                            {% else %}
+                                <img src="{% static 'accounts\images\noprofile.jpg' %}" width='33px' height='33px'
+                                     style='border-radius:70%'>
 
-                {% endif %}
-                <a class="nav-link" href="{% url 'accounts:logout' %}">  Logout</a>
-                  </div>
-              {% else %}
-              <div class="d-flex">
-              <a class="nav-link" href="{% url 'accounts:login' %}">Login  </a>
-
-              <a class="nav-link" href="{% url 'accounts:register' %}">  Register</a>
-              {% endif %}
-              </div>
-            </li>
+                            {% endif %}
+                            &nbsp;&nbsp;&nbsp;&nbsp;
+                            <a class="nav-link" href="{% url 'accounts:logout' %}"> Logout</a>
+                            </div>
+                            {% else %}
+                                <div class="d-flex">
+                                <a class="nav-link" href="{% url 'accounts:login' %}">Login </a>
+                                &nbsp;&nbsp;&nbsp;
+                                <a class="nav-link" href="{% url 'accounts:register' %}"> Register</a>
+                            {% endif %}
+                            </div>
+                        </li>
             </ul>
           </div>
         </div>
