@@ -112,7 +112,7 @@
                                             <a href="{% url 'blog:detail' article.slug  %}"> <img src="{{ article.image.url }}" alt="" width="300px" height="200px" ></a>
                                         </div>
                                         <div class="down-content">
-                                            <span>{{ article.category.all.first }}</span>
+                                            <span> {{ article.category.all.first }}</span>
                                             <a href="{% url 'blog:detail' article.slug %}"><h4>{{ article.title }}</h4>
                                             </a>
                                             <ul class="post-info">
