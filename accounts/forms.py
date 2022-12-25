@@ -2,6 +2,11 @@ from django import forms
 from django.contrib.auth import authenticate
 from django.forms import ValidationError
 from django.contrib.auth.models import User
+from django.db import models
+from django.forms import fields
+from .models import profile
+from django import forms
+
 
 class LoginForm(forms.Form):
     username = forms.CharField(widget=forms.TextInput(attrs={"class": "input100", "placeholder": "username"}))
@@ -34,9 +39,14 @@ class RegisterForm(forms.Form):
             raise ValidationError('passwords are not match', code='invpass')
 
 
-
 class UserEditForm(forms.ModelForm):
     class Meta:
         model = User
         fields = ('username', 'first_name', 'last_name', 'email')
+
+
+class UserPicForm(forms.ModelForm):
+    class Meta:
+        model = profile
+        fields = ('image',)
 

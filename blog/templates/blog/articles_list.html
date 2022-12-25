@@ -53,11 +53,11 @@
                             &nbsp;&nbsp;&nbsp;
                             {% if user.profile.image %}
                                 <span>
-                    <img src="{{ user.profile.image.url }}" width='33px' height='33px' style='border-radius:70%'>
+                                    <a href="{% url 'accounts:profile' %}">  <img src="{{ user.profile.image.url }}" width='33px' height='33px' style='border-radius:70%'> </a>
                 </span>
                             {% else %}
-                                <img src="{% static 'accounts\images\noprofile.jpg' %}" width='33px' height='33px'
-                                     style='border-radius:70%'>
+                               <a href="{% url 'accounts:profile' %}">  <img src="{% static 'accounts\images\noprofile.jpg' %}" width='33px' height='33px'
+                                                                             style='border-radius:70%'> </a>
 
                             {% endif %}
                             &nbsp;&nbsp;&nbsp;&nbsp;
@@ -116,9 +116,9 @@
                                             <a href="{% url 'blog:detail' article.slug %}"><h4>{{ article.title }}</h4>
                                             </a>
                                             <ul class="post-info">
-                                                <li><a href="#">{{ article.author.username }}</a></li>
-                                                <li><a href="#">{{ article.created }}</a></li>
-                                                <li><a href="#">12 Comments</a></li>
+                                                <li><a href="{% url 'blog:detail' article.slug %}">{{ article.author.username }}</a></li>
+                                                <li><a href="{% url 'blog:detail' article.slug %}">{{ article.created }}</a></li>
+                                                <li><a href="{% url 'blog:detail' article.slug %}">{{ article.comments.count }} Comments</a></li>
                                             </ul>
                                             <p>{{ article.body|truncatewords:50  }}</p>
                                             <div class="post-options">

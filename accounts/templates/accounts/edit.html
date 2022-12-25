@@ -50,10 +50,10 @@
                 {% endif %}
                 {% if user.profile.image %}
                 <span>
-                    <img src="{{ user.profile.image.url }}" width='33px' height='33px' style='border-radius:70%' >
+                    <a href="{% url 'accounts:profile' %}">  <img src="{{ user.profile.image.url }}" width='33px' height='33px' style='border-radius:70%' > </a>
                 </span>
                 {% else %}
-                    <img src="{% static 'accounts\images\noprofile.jpg' %}" width='33px' height='33px' style='border-radius:70%' >
+                    <a href="{% url 'accounts:profile' %}">  <img src="{% static 'accounts\images\noprofile.jpg' %}" width='33px' height='33px' style='border-radius:70%' > </a>
 
                 {% endif %}
                 <a class="nav-link" href="{% url 'accounts:logout' %}">  Logout</a>

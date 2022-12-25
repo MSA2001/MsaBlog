@@ -5,12 +5,12 @@ from .models import Article, Category, Comment, Message, Like
 
 @admin.register(Article)
 class ArticleAdmin(admin.ModelAdmin):
-    list_display = ('__str__', 'author', 'show_image')
+    list_display = ('__str__', 'author',)
 
 
 @admin.register(Comment)
 class ArticleAdmin(admin.ModelAdmin):
-    list_display = ('__str__', 'show_image')
+    list_display = ('__str__',)
 
 
 admin.site.register(Category)
